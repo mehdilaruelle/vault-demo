@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  vault:
+    image: vault:0.11.5
+    container_name: ${VAULT_HOST}
+    environment:
+      - VAULT_DEV_ROOT_TOKEN_ID=${VAULT_DEV_ROOT_TOKEN_ID}
+    ports:
+      - "8200:8200"
+    cap_add:
+      - IPC_LOCK
+  db:
+    image: mysql:5.7
+    container_name: ${MYSQL_HOST}
+    env_file:
+      - ".env"
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  web:
+    build: .
+    container_name: php
+    environment:
+      - DB_HOST=${MYSQL_HOST}
+      - DB_NAME=${MYSQL_DATABASE}
+      - DB_USER=${MYSQL_USER}
+    depends_on:
+      - db
+    volumes:
+      - ./web/:/var/www/html/
+    ports:
+      - "8080:80"
