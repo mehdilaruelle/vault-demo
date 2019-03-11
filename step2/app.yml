@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    container_name: php
+    env_file:
+      - ".env"
+    environment:
+      - DB_HOST=${MYSQL_HOST}
+      - DB_NAME=${MYSQL_DATABASE}
+      - VLT_ADDR=http://vault:8200
+      - VLT_PATH=database/creds/web
+    volumes:
+      - ./web/:/var/www/html/
+    ports:
+      - "8080:80"
+
+networks:
+  default:
+    external:
+      name: step2_default
