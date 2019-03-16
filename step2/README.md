@@ -9,9 +9,7 @@ Each time you will go to the website, the application will use a new couple user
 First, init your terraform folder:
 
 ```bash
-cd terraform
-$ docker run -i -t -v $(pwd):/app/ -w /app/ hashicorp/terraform:light init
-cd -
+$ docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light init
 ```
 
 Or if you can use Makefile: `make init`
@@ -37,8 +35,8 @@ As an Dev, you need to deploy the infrastructure. In this case, using Vault, you
 Here how to retrieve **Role_ID** and **Secret_ID**:
 
 ```bash
-$ role_id=$(docker run -i -t -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output approle_role_id)
-$ secret_id=$(docker run -i -t -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output approle_secret_id)
+$ role_id=$(docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output approle_role_id)
+$ secret_id=$(docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output approle_secret_id)
 ```
 
 And launch your application:
@@ -59,6 +57,7 @@ Do the following commands:
 
 ```bash
 $ docker-compose down
+$ docker-compose -f app.yml down
 $ rm terraform/terraform.tfstate
 ```
 
