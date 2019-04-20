@@ -4,7 +4,7 @@ This step use Hashicorp Vault dynamic secrets with database.
 
 Each time you will go to the website, the application will use a new couple user/password for database access.
 
-It use also Encryption as a Service. Each time you will go to the website, the application will Encrypt and Decrypt value. You can store it into the database as data encryption.
+It use also Encryption as a Service. Each time you will go to the website, the application will Encrypt value and store the encrypted data into the database.
 
 ## Initialisation
 
@@ -52,6 +52,20 @@ Or if you can use Makefile: `make app`
 ### Service access
 
 * Application address: [http://127.0.0.1:8080](http://127.0.0.1:8080)
+
+## Test the EaaS
+
+Going into the website, you will find an encrypted data from Vault. We will decrypt this value to test if the EaaS working.
+Your application can only encrypt and can not decrypt (check the [web.hcl](./terraform/web.hcl)).
+
+Vault informations access for web UI:
+
+1. Connect with your web browser to the Vault URL
+2. Use token connection and enter as a token: `root`
+3. Go to `transit` path and select: `web`
+4. In `key actions`, select: `Decrypt`
+5. Put your encrypted value and decrypt it
+6. `Decode from base64` and you will get the decrypt value who should be equel to the server name
 
 ## Cleanup
 

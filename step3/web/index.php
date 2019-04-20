@@ -1,4 +1,4 @@
-<!-- ./php/index.php -->
+<!-- ./web/index.php -->
 
 <html>
     <head>
@@ -63,16 +63,16 @@
 
             echo "</br>Data test into DB:<br>";
             if (!$conn->query("DROP TABLE IF EXISTS test") ||
-                !$conn->query("CREATE TABLE test(id INT)") ) {
+                !$conn->query("CREATE TABLE test(id INT, value VARCHAR(255))") ) {
                 echo "Fail to create table: (" . $conn->errno . ") " . $conn->error;
             }
 
             echo "Encrypt value from Vault...</br>";
             $ch = curl_init();
 
-            curl_setopt($ch, CURLOPT_URL, $vlt_url."/v1/transit/encrypt/web");
+            curl_setopt($ch, CURLOPT_URL, $vlt_url . "/v1/transit/encrypt/web");
             curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, '{"plaintext":"'.base64_encode(4).'"}');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, '{"plaintext":"' . base64_encode($_SERVER['SERVER_NAME']) . '"}');
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
                 'X-Vault-Token:'.$token
             ));
@@ -82,37 +82,24 @@
             curl_close($ch);
 
             $cipher_value = json_decode($result)->{'data'}->{'ciphertext'};
-            echo "Encrypted value from Vault:".$cipher_value."</br>";
+            echo "Encrypted value from Vault:" . $cipher_value . "</br>";
 
-            echo "Decrypt value from Vault...</br>";
-            $ch = curl_init();
+            echo "Put data into database...</br>";
 
-            curl_setopt($ch, CURLOPT_URL, $vlt_url."/v1/transit/decrypt/web");
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, '{"ciphertext":"'.$cipher_value.'"}');
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'X-Vault-Token:'.$token
-            ));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $result = curl_exec($ch);
-
-            curl_close($ch);
-
-            $plaintext_value = json_decode($result)->{'data'}->{'plaintext'};
-            echo "Decrypted value from Vault:".base64_decode($plaintext_value)."</br>";
-
-            if (!$conn->query("INSERT INTO test(id) VALUES (1), (2), (3)")) {
+            if (!$conn->query('INSERT INTO test(id, value) VALUES (1,"Hello"), (2,"World!"), (3,"' . $cipher_value . '")')) {
                 echo "Fail to insert into table: (" . $conn->errno . ") " . $conn->error;
             }
 
-            if(! $res = $conn->query("SELECT id FROM test ORDER BY id ASC")) {
+            echo "Get data from database:</br>";
+
+            if(! $res = $conn->query("SELECT id, value FROM test ORDER BY id ASC")) {
                 echo "Fail to select ids in table: (" . $conn->errno . ") " . $conn->error;
             }
 
             for ($row_no = $res->num_rows - 1; $row_no >= 0; $row_no--) {
                 $res->data_seek($row_no);
                 $row = $res->fetch_assoc();
-                echo " id = " . $row['id'] . "</br>";
+                echo " id = " . $row['id'] . " & value = " . $row['value'] . "</br>";
             }
             ?>
     </body>
