@@ -9,6 +9,7 @@ services:
     depends_on:
       - db
       - vault
+    restart: on-failure
     volumes:
       - ./terraform/:/app/
     working_dir: /app/
