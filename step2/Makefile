@@ -1,5 +1,5 @@
 init:
-	docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light init
+	docker run --rm -v $$(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light init
 
 infra:
 	docker-compose up
