@@ -44,6 +44,17 @@ The goal is to encrypt the data into the database.
 
 See more on the [REAME.md](./step3/README.md).
 
+### Step 4 (bonus): Vault agent & Consul Env
+
+> This step is under construction.
+
+In this step, based on the previous step, we will Vault agent to authentication with
+Vault server and Consul Env to populate secrets into environment variables.
+
+The goal is to interact with the Vault transparently for an application (no app change).
+
+See more on the [REAME.md](./step4/README.md).
+
 ## Contact
 
 You see something wrong ? You want extra information or more ?
