@@ -10,7 +10,7 @@ resource "vault_mount" "db" {
 data "template_file" "web_policies" {
   template = "${file("${var.policy_path}")}"
 
-  vars {
+  vars = {
     entity_name = "${var.entity_name}"
   }
 }
@@ -51,6 +51,6 @@ resource "vault_database_secret_backend_role" "role" {
   backend             = "${vault_mount.db.path}"
   name                = "${var.entity_name}"
   db_name             = "${vault_database_secret_backend_connection.mysql.name}"
-  creation_statements = "CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT ALL PRIVILEGES ON *.* TO '{{name}}'@'%';"
+  creation_statements = ["CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}';GRANT ALL PRIVILEGES ON *.* TO '{{name}}'@'%';"]
   default_ttl         = 60
 }
