@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    container_name: php
+    entrypoint: ["entrypoint.sh"]
+    env_file:
+      - ".env"
+    environment:
+      - DB_HOST=${MYSQL_HOST}
+      - DB_NAME=${MYSQL_DATABASE}
+      - VAULT_ADDR=http://vault:8200
+      - VAULT_PATH=database/creds/web
+    volumes:
+      - ./web/:/var/www/html/
+    ports:
+      - "8080:80"
+
+networks:
+  default:
+    external:
+      name: step4_default

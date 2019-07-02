@@ -5,12 +5,21 @@
 This step use Hashicorp Vault:
 * Dynamic secrets with database
 * Encryption as a Service
-* Vault Agent for Auth method
-* Consul Env for populate secrets into environment variables
+* `Vault Agent` for Auto-Auth method
+* `envconsul` to populate secrets into environment variables
 
-Each time you will go to the website, the application will use a new couple user/password for database access.
+Each time you will go to the website, the application will use a couple of user/password for database access with a short TTL. This secret will be renew before the expiration of the TTL by `envconsul`.
+If the secret is revoked, `envconsul` will request a new one to Vault.
 
 It use also Encryption as a Service. Each time you will go to the website, the application will Encrypt value and store the encrypted data into the database.
+
+## Issues with this step
+
+This step is under construction. Some issues persiste:
+
+* Store the token outside of the website directory. The token can be acces from: [http://127.0.0.1:8080/.vault-token](http://127.0.0.1:8080/.vault-token)
+* envconsul can't get Vault Token from a file and refresh it (consul-template can do it)
+* Wrapping token system with Vault agent: envconsul have some issue with a wrapping token from a Vault Agent
 
 ## Initialisation
 
