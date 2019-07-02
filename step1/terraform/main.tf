@@ -22,6 +22,7 @@ resource "vault_approle_auth_backend_role" "project_role" {
   secret_id_num_uses = "${var.token_num_uses}"
   secret_id_ttl      = "${var.secret_id_ttl}"
   token_num_uses     = "${var.token_num_uses}"
+  token_ttl          = "${var.token_ttl}"
   token_max_ttl      = "${var.token_max_ttl}"
   policies           = ["default", "${var.entity_name}"]
 }
