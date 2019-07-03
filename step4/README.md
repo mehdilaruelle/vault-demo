@@ -70,6 +70,14 @@ Or if you can use Makefile: `make app`
 
 ## Test
 
+### Secret rotation
+
+1. Connect with your web browser to the Vault URL
+2. Use token connection and enter as a token: `root`
+3. Go to `Access` path and select: `lease`
+4. Go to `database` and the first lease you find
+5. Revoke the lease ID.
+
 ### EaaS
 
 Going into the website, you will find an encrypted data from Vault. We will decrypt this value to test if the EaaS working.
