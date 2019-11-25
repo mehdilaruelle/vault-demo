@@ -7,11 +7,9 @@ variable "policy_path" {
   description = "The path of the template policy"
 }
 
-variable "db_user" {
-}
+variable "db_user" {}
 
-variable "db_password" {
-}
+variable "db_password" {}
 
 # OPTIONS
 variable "secret_id_num_uses" {
