@@ -2,7 +2,7 @@ version: '3'
 
 services:
   vault:
-    image: vault:1.4.1
+    image: vault:1.5.3
     container_name: ${VAULT_HOST}
     environment:
       - VAULT_DEV_ROOT_TOKEN_ID=${VAULT_DEV_ROOT_TOKEN_ID}
