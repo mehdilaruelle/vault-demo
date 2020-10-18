@@ -3,7 +3,7 @@ resource "vault_auth_backend" "approle" {
 }
 
 data "template_file" "web_policies" {
-  template = "${file("${var.policy_path}")}"
+  template = file(var.policy_path)
 
   vars = {
     entity_name = var.entity_name
