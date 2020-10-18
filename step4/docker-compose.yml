@@ -16,7 +16,7 @@ services:
     command: apply -auto-approve -var="db_user=root" -var="db_password=${MYSQL_ROOT_PASSWORD}"
 
   vault:
-    image: vault:1.5.3
+    image: vault:1.5.4
     container_name: ${VAULT_HOST}
     environment:
       - VAULT_DEV_ROOT_TOKEN_ID=${VAULT_DEV_ROOT_TOKEN_ID}
