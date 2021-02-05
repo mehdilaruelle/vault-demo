@@ -37,8 +37,8 @@ As an Dev, you need to deploy the infrastructure. In this case, using Vault, you
 Here how to retrieve **Role_ID** and **Secret_ID**:
 
 ```bash
-$ role_id=$(docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output approle_role_id)
-$ secret_id=$(docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output approle_secret_id)
+$ role_id=$(docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output -raw approle_role_id)
+$ secret_id=$(docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output -raw approle_secret_id)
 ```
 
 And launch your application:

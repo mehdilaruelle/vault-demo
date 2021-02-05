@@ -5,21 +5,13 @@
 This step use Hashicorp Vault:
 * Dynamic secrets with database
 * Encryption as a Service
-* `Vault Agent` for Auto-Auth method
+* `Vault Agent` for Auto-Auth method (with AppRole)
 * `envconsul` to populate secrets into environment variables
 
 Each time you will go to the website, the application will use a couple of user/password for database access with a short TTL. This secret will be renew before the expiration of the TTL by `envconsul`.
 If the secret is revoked, `envconsul` will request a new one to Vault.
 
 It use also Encryption as a Service. Each time you will go to the website, the application will Encrypt value and store the encrypted data into the database.
-
-## Issues with this step
-
-This step is under construction. Some issues persiste:
-
-* Store the token outside of the website directory. The token can be acces from: [http://127.0.0.1:8080/.vault-token](http://127.0.0.1:8080/.vault-token)
-* envconsul can't get Vault Token from a file and refresh it (consul-template can do it)
-* Wrapping token system with Vault agent: envconsul have some issue with a wrapping token from a Vault Agent
 
 ## Initialisation
 
@@ -52,8 +44,8 @@ As an Dev, you need to deploy the infrastructure. In this case, using Vault, you
 Here how to retrieve **Role_ID** and **Secret_ID**:
 
 ```bash
-$ role_id=$(docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output approle_role_id)
-$ secret_id=$(docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output approle_secret_id)
+$ role_id=$(docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output -raw approle_role_id)
+$ secret_id=$(docker run --rm -v $(pwd)/terraform:/app/ -w /app/ hashicorp/terraform:light output -raw approle_secret_id)
 ```
 
 And launch your application:
