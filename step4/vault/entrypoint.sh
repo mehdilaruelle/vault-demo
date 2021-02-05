@@ -1,12 +1,8 @@
 #! /bin/bash
 
-echo "$VLT_ROLE_ID" >> ~/role-id
-echo "$VLT_SECRET_ID" >> ~/.secret-id
+echo "$VLT_ROLE_ID" >> /root/role-id
+echo "$VLT_SECRET_ID" >> /root/.secret-id
 
-vault agent -config=/root/config.hcl &
+vault agent -config=/root/config.hcl
 
-sleep 2
-
-export VAULT_TOKEN=$(cat /var/www/.vault-token)
-
-envconsul -upcase -vault-renew-token=false -secret="$VAULT_PATH" apache2-foreground
+envconsul -vault-agent-token-file="/var/www/.vault-token"  -upcase -vault-renew-token=false -secret="$VAULT_PATH" apache2-foreground
