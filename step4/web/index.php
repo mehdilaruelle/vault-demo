@@ -19,7 +19,7 @@
             $pass           = getenv($secret_db_path . "_PASSWORD");
 
             if (file_exists("/var/www/.vault-token")) {
-              $token = readfile("/var/www/.vault-token", "r");
+              $token = file_get_contents("/var/www/.vault-token", "r");
             }
             else{
               echo "Token not found.";
