@@ -1,7 +1,5 @@
 # How is it working ?
 
-> This step is under construction
-
 This step use Hashicorp Vault:
 * Dynamic secrets with database
 * Encryption as a Service

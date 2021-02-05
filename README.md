@@ -54,8 +54,6 @@ Related french article: [ENCRYPTION AS A SERVICE](https://blog.d2si.io/2019/07/0
 
 ### Step 4 (bonus): Vault agent & Consul Env
 
-> This step is under construction.
-
 In this step, based on the previous step, we will Vault agent to authentication with
 Vault server and Consul Env to populate secrets into environment variables.
 
