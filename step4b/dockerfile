@@ -1,0 +1,12 @@
+FROM php:7-apache
+
+ARG VAULT_VERSION=1.6.2
+
+RUN docker-php-ext-install mysqli
+RUN apt-get update && apt-get install -y jq wget unzip curl tar
+
+RUN wget https://releases.hashicorp.com/vault/${VAULT_VERSION}/vault_${VAULT_VERSION}_linux_amd64.zip && unzip -d /bin vault_${VAULT_VERSION}_linux_amd64.zip
+
+COPY vault/config.hcl /root/config.hcl
+COPY vault/entrypoint.sh /usr/local/bin
+COPY vault/secrets.tpl /var/www/secrets.tpl

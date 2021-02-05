@@ -54,12 +54,22 @@ Related french article: [ENCRYPTION AS A SERVICE](https://blog.d2si.io/2019/07/0
 
 ### Step 4 (bonus): Vault agent & Consul Env
 
-In this step, based on the previous step, we will Vault agent to authentication with
+In this step, based on the previous step, we will use Vault agent to authentication with
 Vault server and Consul Env to populate secrets into environment variables.
 
 The goal is to interact with the Vault transparently for an application (no app change).
 
 See more on the [REAME.md](./step4/README.md).
+
+### Step 4b (bonus): Vault agent only
+
+In this step, based on the step 3, we will use Vault agent to authentication with
+Vault server and to render template file with secrets. It's an alternative to the step 4.
+The step 4 is a way to implement secret through environment variables and step 4b is a way to implement secret through a file.
+
+The goal is to interact with the Vault transparently for an application (no app change).
+
+See more on the [REAME.md](./step4b/README.md).
 
 ## Contact
 
