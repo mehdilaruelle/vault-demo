@@ -29,7 +29,7 @@ resource "vault_policy" "web_policies" {
 resource "vault_approle_auth_backend_role" "project_role" {
   backend            = vault_auth_backend.approle.path
   role_name          = "role-${var.entity_name}"
-  secret_id_num_uses = var.token_num_uses
+  secret_id_num_uses = var.secret_id_num_uses
   secret_id_ttl      = var.secret_id_ttl
   token_num_uses     = var.token_num_uses
   token_ttl          = var.token_ttl
