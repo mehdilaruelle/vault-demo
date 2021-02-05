@@ -3,11 +3,12 @@
 This step use Hashicorp Vault:
 * Dynamic secrets with database
 * Encryption as a Service
-* `Vault Agent` for Auto-Auth method (with AppRole)
+* `Vault Agent` for Auto-Auth method (with AppRole) and renew the Vault token
 * `envconsul` to populate secrets into environment variables
 
 Each time you will go to the website, the application will use a couple of user/password for database access with a short TTL. This secret will be renew before the expiration of the TTL by `envconsul`.
 If the secret is revoked, `envconsul` will request a new one to Vault.
+If the token expired, `Vault Agent` will request a new one to Vault (re-auth).
 
 It use also Encryption as a Service. Each time you will go to the website, the application will Encrypt value and store the encrypted data into the database.
 
