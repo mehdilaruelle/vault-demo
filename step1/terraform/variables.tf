@@ -9,24 +9,26 @@ variable "policy_path" {
 
 # OPTIONS
 variable "secret_id_num_uses" {
-  default = "0"
+  default = 0
+  description = "The number of secret-id usage"
 }
 
 variable "secret_id_ttl" {
-  default     = "600"
+  default     = 600
   description = "TTL is like equal to 10 minutes"
 }
 
 variable "token_num_uses" {
-  default = "0"
+  default = 0
+  description = "The number of token usage"
 }
 
 variable "token_ttl" {
-  default     = "60"
+  default     = 60
   description = "TTL is like equal to 1 minute"
 }
 
 variable "token_max_ttl" {
-  default     = "600"
+  default     = 600
   description = "Max TTL is like equal to 10 minute"
 }
