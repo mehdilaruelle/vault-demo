@@ -27,7 +27,7 @@ variable "token_num_uses" {
 
 variable "token_ttl" {
   default     = "60"
-  description = "TTL is like equal to 10 minute"
+  description = "TTL is like equal to 1 minute"
 }
 
 variable "token_max_ttl" {
