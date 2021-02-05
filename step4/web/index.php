@@ -18,9 +18,13 @@
             $user           = getenv($secret_db_path . "_USERNAME");
             $pass           = getenv($secret_db_path . "_PASSWORD");
 
-            $vlt_file = fopen("/var/www/html/.vault-token", "r") or die("Unable to open file!");
-            $token = fread($vlt_file,filesize("/var/www/html/.vault-token"));
-            fclose($vlt_file);
+            if (file_exists("/var/www/.vault-token")) {
+              $token = readfile("/var/www/.vault-token", "r");
+            }
+            else{
+              echo "Token not found.";
+              exit;
+            }
 
             echo "Using database user: <b>".$user."</b></br>";
 
@@ -46,7 +50,7 @@
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, '{"plaintext":"' . base64_encode($_SERVER['SERVER_NAME']) . '"}');
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'X-Vault-Token:'.$token
+               'X-Vault-Token: '.$token
             ));
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $result = curl_exec($ch);

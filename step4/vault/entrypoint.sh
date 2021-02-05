@@ -7,6 +7,6 @@ vault agent -config=/root/config.hcl &
 
 sleep 2
 
-export VAULT_TOKEN=$(cat /var/www/html/.vault-token)
+export VAULT_TOKEN=$(cat /var/www/.vault-token)
 
 envconsul -upcase -vault-renew-token=false -secret="$VAULT_PATH" apache2-foreground

@@ -2,10 +2,6 @@ pid_file = "./pidfile"
 
 exit_after_auth = true
 
-vault {
-        address = "http://vault:8200"
-}
-
 auto_auth {
         method "approle" {
                 config = {
@@ -17,7 +13,8 @@ auto_auth {
 
         sink "file" {
                 config = {
-                        path = "/var/www/html/.vault-token"
+                        path = "/var/www/.vault-token"
+                        mode = 0644
                 }
         }
 }
