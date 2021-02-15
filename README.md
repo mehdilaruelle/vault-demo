@@ -75,4 +75,4 @@ See more on the [REAME.md](./step4b/README.md).
 
 You see something wrong ? You want extra information or more ?
 
-Contact me: <mehdi.laruelle@d2si.io>
+Contact me: <mehdi.laruelle@revolve.team>
