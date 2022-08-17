@@ -9,7 +9,7 @@ variable "policy_path" {
 
 # OPTIONS
 variable "secret_id_num_uses" {
-  default = 0
+  default     = 0
   description = "The number of secret-id usage"
 }
 
@@ -19,7 +19,7 @@ variable "secret_id_ttl" {
 }
 
 variable "token_num_uses" {
-  default = 0
+  default     = 0
   description = "The number of token usage"
 }
 

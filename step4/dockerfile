@@ -1,7 +1,7 @@
 FROM php:7-apache
 
-ARG VAULT_VERSION=1.8.5
-ARG VAULT_ENVCONSUL_VERSION=0.12.0
+ARG VAULT_VERSION=1.11.2
+ARG VAULT_ENVCONSUL_VERSION=0.13.0
 
 RUN docker-php-ext-install mysqli
 RUN apt-get update && apt-get install -y jq wget unzip curl tar
