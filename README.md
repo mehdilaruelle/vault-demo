@@ -10,6 +10,8 @@ For the demonstration, we will based on a basic website using the following LAMP
 * MYSQL
 * PHP
 
+You can learn more with the [related blog post](https://blog.mehdilaruelle.ninja/posts/2019/03/migrate-your-application-secrets-in-vault-step-1/)
+
 ## Steps ? Which steps ?
 
 Based on website [in step0](./step0/README.md), which is our starting point website, we will integrate the Vault step by step.
@@ -22,7 +24,7 @@ We will find secrets inside the code.
 
 See more on the [REAME.md](./step0/README.md).
 
-Related french article: [SECURISER UNE APPLICATION - PART1](https://blog.d2si.io/2019/03/28/tutoriel-vault-securiser-application/)
+Related blog post: [MIGRATE YOUR SECRETS APPLICATION - PART1](https://blog.mehdilaruelle.ninja/posts/2019/03/migrate-your-application-secrets-in-vault-step-1/)
 
 ### Step 1: Static Secrets
 
@@ -30,7 +32,7 @@ In this step, we add a entrypoint dealing with Vault (Authentication + retrieve 
 
 See more on the [REAME.md](./step1/README.md).
 
-Related french article: [SECURISER UNE APPLICATION - PART1](https://blog.d2si.io/2019/03/28/tutoriel-vault-securiser-application/)
+Related blog post: [MIGRATE YOUR SECRETS APPLICATION - PART1](https://blog.mehdilaruelle.ninja/posts/2019/03/migrate-your-application-secrets-in-vault-step-1/)
 
 ### Step 2: Dynamic Secrets
 
@@ -40,7 +42,7 @@ The goal is to use, at each time, a new database user (username+password) access
 
 See more on the [REAME.md](./step2/README.md).
 
-Related french article: [SECURISER UNE APPLICATION - PART2](https://blog.d2si.io/2019/05/06/tutoriel-vault-securiser-application-partie2/)
+Related blog post: [MIGRATE YOUR SECRETS APPLICATION - PART2](https://blog.mehdilaruelle.ninja/posts/2019/03/migrate-your-application-secrets-in-vault-step-2/)
 
 ### Step 3: Encryption as a Service
 
@@ -50,7 +52,7 @@ The goal is to encrypt the data into the database.
 
 See more on the [REAME.md](./step3/README.md).
 
-Related french article: [ENCRYPTION AS A SERVICE](https://blog.d2si.io/2019/07/01/tutoriel-vault-securiser-application-partie3/)
+Related blog post: [ENCRYPTION AS A SERVICE](https://blog.mehdilaruelle.ninja/posts/2019/03/migrate-your-application-secrets-in-vault-step-3/)
 
 ### Step 4 (bonus): Vault agent & Consul Env
 
@@ -60,6 +62,8 @@ Vault server and Consul Env to populate secrets into environment variables.
 The goal is to interact with the Vault transparently for an application (no app change).
 
 See more on the [REAME.md](./step4/README.md).
+
+Related blog post: [VAULT AGENT](https://blog.mehdilaruelle.ninja/posts/2021/02/how-to-reduce-code-dependency-with-vault-agent/)
 
 ### Step 4b (bonus): Vault agent only
 
@@ -71,8 +75,10 @@ The goal is to interact with the Vault transparently for an application (no app 
 
 See more on the [REAME.md](./step4b/README.md).
 
+Related blog post: [VAULT AGENT](https://blog.mehdilaruelle.ninja/posts/2021/02/how-to-reduce-code-dependency-with-vault-agent/)
+
 ## Contact
 
 You see something wrong ? You want extra information or more ?
 
-Contact me: <mehdi.laruelle@revolve.team>
+Contact me: <3exr269ch@mozmail.com>
